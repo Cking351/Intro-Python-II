@@ -38,6 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 # Make a new player object that is currently in the 'outside' room.
 p1 = Player("Player 1", room['outside'])
+# current_location = f"Location: {p1.location.name}\n{p1.location.description}"
 # Write a loop that:
 #
 # * Prints the current room name
@@ -51,35 +52,32 @@ p1 = Player("Player 1", room['outside'])
 import sys
 while True:
     prompt = input("Which Direction Shall Ye Take? N? S? W? E?")
-    if len(sys.argv) == 1:
-        if prompt[0] == "q":
-            break
-        elif prompt[0] == "n":
+    if prompt[0] == "q":
+            quit("You have left the game")
+    elif prompt[0] == "n":
             if hasattr(p1.location, "n_to"):
                 p1.location = p1.location.n_to
-                print("\nYou have traveled North!\n")
+                print(f"Location: {p1.location.name}\n{p1.location.description}")
             else:
                 print("\nYou go North and find the way blocked\n")
                 continue
-        elif prompt[0] == "e":
+    elif prompt[0] == "e":
             if hasattr(p1.location, "e_to"):
                 p1.location = p1.location.e_to
-                print("\nYou continue to the east!\n")
+                print(f"Location: {p1.location.name}\n{p1.location.description}")
             else:
                 print("\nYou go East and find the way blocked\n")
                 continue
-        elif prompt[0] == "w":
+    elif prompt[0] == "w":
             if hasattr(p1.location, "w_to"):
                 p1.location = p1.location.w_to
-                print("Your journey continues West!")
+                print(f"Location: {p1.location.name}\n{p1.location.description}")
             else:
                 print("\nYou go West and find the way blocked\n")
                 continue
-        elif prompt[0] == "s":
+    elif prompt[0] == "s":
             if hasattr(p1.location, "s_to"):
                 p1.location = p1.location.s_to
-                print("\nYou continue South")
-            else:
-                print("\nYou go South and find the way blocked\n")
+                print(f"Location: {p1.location.name}\n{p1.location.description}")
     else:
-        print(sys.argv)
+        print("\nYou go South and find the way blocked\n")
